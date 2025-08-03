@@ -3,967 +3,746 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grow a Garden - All WORKING Cooking Recipes</title>
+    <title>Grow a Garden - Cooking Recipes</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #4facfe 100%);
-            min-height: 100vh;
-            padding: 20px;
-            animation: gradientShift 10s ease infinite;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
         }
-
-        @keyframes gradientShift {
-            0%, 100% { background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #4facfe 100%); }
-            50% { background: linear-gradient(135deg, #4facfe 0%, #667eea 50%, #764ba2 100%); }
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 25px;
-            padding: 40px;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
+        
         .header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 60px 20px;
             text-align: center;
-            margin-bottom: 40px;
+            border-bottom: 1px solid #333;
         }
-
+        
         .header h1 {
-            font-size: 3.2rem;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, #4CAF50, #8BC34A, #CDDC39);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            font-weight: 800;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
         }
-
-        .header p {
-            font-size: 1.2rem;
+        
+        .header .subtitle {
+            color: #888;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .header .author {
             color: #666;
-            margin-bottom: 10px;
-        }
-
-        .disclaimer {
-            background: linear-gradient(135deg, #FFF3E0, #FFCC80);
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid #FF9800;
-            margin-bottom: 30px;
-            font-size: 0.95rem;
-            color: #E65100;
-        }
-
-        .disclaimer strong {
-            color: #BF360C;
-        }
-
-        .search-box {
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .search-box input {
-            padding: 18px 25px;
-            font-size: 1.15rem;
-            border: 3px solid transparent;
-            border-radius: 50px;
-            width: 450px;
-            max-width: 100%;
-            outline: none;
-            transition: all 0.4s ease;
-            background: linear-gradient(white, white) padding-box, linear-gradient(45deg, #4CAF50, #8BC34A) border-box;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-        }
-
-        .search-box input:focus {
-            border-color: transparent;
-            box-shadow: 0 0 30px rgba(76, 175, 80, 0.3);
-            transform: scale(1.02);
-        }
-
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            text-align: center;
-            padding: 15px 25px;
-            background: linear-gradient(135deg, #F3E5F5, #E1BEE7);
-            border-radius: 15px;
-            min-width: 120px;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #7B1FA2;
-            display: block;
-        }
-
-        .stat-label {
-            color: #4A148C;
             font-size: 0.9rem;
-            margin-top: 5px;
+            font-style: italic;
         }
-
-        .filter-buttons {
+        
+        .warning {
+            background: #2a1810;
+            border: 1px solid #5a3a20;
+            padding: 16px 20px;
+            margin: 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #ffb366;
+        }
+        
+        .controls {
+            padding: 40px 20px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .search {
+            margin-bottom: 24px;
+        }
+        
+        .search input {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 16px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1rem;
+        }
+        
+        .search input:focus {
+            outline: none;
+            border-color: #555;
+        }
+        
+        .filters {
             display: flex;
-            justify-content: center;
+            gap: 8px;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
+            margin-bottom: 32px;
         }
-
+        
         .filter-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
-            color: #1565C0;
+            padding: 8px 16px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 20px;
+            color: #ccc;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
         }
-
-        .filter-btn:hover, .filter-btn.active {
-            background: linear-gradient(135deg, #2196F3, #1976D2);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #333;
+            color: #fff;
         }
-
-        .recipes-grid {
+        
+        .recipes {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 20px;
         }
-
-        .recipe-card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
+        
+        .recipe {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 8px;
             overflow: hidden;
-            border: 1px solid rgba(0, 0, 0, 0.05);
         }
-
-        .recipe-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-        }
-
-        .recipe-card.normal::before { background: linear-gradient(90deg, #4CAF50, #8BC34A); }
-        .recipe-card.uncommon::before { background: linear-gradient(90deg, #2196F3, #03DAC6); }
-        .recipe-card.rare::before { background: linear-gradient(90deg, #9C27B0, #E91E63); }
-        .recipe-card.legendary::before { background: linear-gradient(90deg, #FF9800, #FF5722); }
-        .recipe-card.mythical::before { background: linear-gradient(90deg, #673AB7, #9C27B0); }
-        .recipe-card.divine::before { background: linear-gradient(90deg, #FFD700, #FFA000); }
-        .recipe-card.prismatic::before { background: linear-gradient(90deg, #FF0080, #00FF80, #8000FF, #FF8000); }
-
-        .recipe-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-        }
-
+        
         .recipe-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
+            padding: 20px 24px 16px;
+            border-bottom: 1px solid #222;
         }
-
+        
         .recipe-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #2E7D32;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        
+        .recipe-badges {
             display: flex;
-            align-items: center;
-            gap: 10px;
+            gap: 6px;
+            flex-wrap: wrap;
         }
-
-        .recipe-title::before {
-            content: '🍳';
-            font-size: 1.3rem;
-        }
-
-        .rarity-badge {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
+        
+        .badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-
-        .rarity-badge.normal { background: #E8F5E8; color: #2E7D32; }
-        .rarity-badge.uncommon { background: #E3F2FD; color: #1565C0; }
-        .rarity-badge.rare { background: #F3E5F5; color: #7B1FA2; }
-        .rarity-badge.legendary { background: #FFF3E0; color: #E65100; }
-        .rarity-badge.mythical { background: #EDE7F6; color: #4527A0; }
-        .rarity-badge.divine { background: #FFFDE7; color: #F57F17; }
-        .rarity-badge.prismatic { 
-            background: linear-gradient(45deg, #FF0080, #00FF80, #8000FF, #FF8000);
-            color: white;
-            animation: rainbow 3s infinite;
+        
+        .badge.normal { background: #2a4a2a; color: #8bc34a; }
+        .badge.uncommon { background: #1a3a4a; color: #4fc3f7; }
+        .badge.rare { background: #4a2a4a; color: #e91e63; }
+        .badge.legendary { background: #4a3a1a; color: #ff9800; }
+        .badge.mythical { background: #3a2a4a; color: #9c27b0; }
+        .badge.divine { background: #4a4a1a; color: #ffeb3b; }
+        .badge.prismatic { background: #2a2a2a; color: #f3e5f5; }
+        
+        .recipe-body {
+            padding: 20px 24px;
         }
-
-        @keyframes rainbow {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
-
-        .recipe-variants {
-            margin-bottom: 20px;
-        }
-
+        
         .variant {
-            background: #F8F9FA;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-left: 3px solid #4CAF50;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #1a1a1a;
         }
-
-        .variant-header {
-            font-weight: bold;
-            color: #2E7D32;
-            margin-bottom: 8px;
+        
+        .variant:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .variant-title {
             font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 8px;
+            font-weight: 500;
         }
-
-        .ingredient-list {
+        
+        .ingredients {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
         }
-
+        
         .ingredient {
-            background: linear-gradient(135deg, #E8F5E8, #C8E6C9);
-            padding: 6px 12px;
-            border-radius: 20px;
+            padding: 4px 10px;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 16px;
             font-size: 0.85rem;
-            color: #2E7D32;
-            border: 1px solid #A5D6A7;
-            transition: all 0.2s ease;
+            color: #ccc;
+            white-space: nowrap;
         }
-
-        .ingredient:hover {
-            background: linear-gradient(135deg, #C8E6C9, #A5D6A7);
-            transform: scale(1.05);
-        }
-
-        .recipe-tips {
-            background: linear-gradient(135deg, #E8EAF6, #C5CAE9);
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 15px;
+        
+        .stats {
+            text-align: center;
+            padding: 20px;
+            color: #666;
             font-size: 0.9rem;
-            color: #283593;
-            border-left: 4px solid #3F51B5;
         }
-
-        .recipe-tips h4 {
-            margin-bottom: 8px;
-            color: #1A237E;
-        }
-
-        .intro-section {
-            background: linear-gradient(135deg, #F3E5F5, #E1BEE7);
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            color: #4A148C;
-        }
-
-        .intro-section h2 {
-            color: #7B1FA2;
-            margin-bottom: 15px;
-        }
-
-        .intro-section p {
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
-
+        
+        .hidden { display: none; }
+        
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .recipes-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .search-box input {
-                width: 100%;
-            }
-            
-            .stats {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .recipe-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-        }
-
-        .hidden {
-            display: none;
+            .header h1 { font-size: 2.2rem; }
+            .recipes { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🌱 Grow a Garden - All WORKING Cooking Recipes</h1>
-            <p>Your ultimate cooking companion for the garden update</p>
-            <p style="font-style: italic; color: #888; margin-top: 10px;">By Omegaa</p>
+    <div class="header">
+        <h1>🌿 Grow a Garden Recipes</h1>
+        <div class="subtitle">Cooking guide for the garden update</div>
+        <div class="author">By Omegaa</div>
+    </div>
+
+    <div class="warning">
+        <strong>Note:</strong> Recipes don't work 100% of the time due to game randomness. Keep trying if it doesn't work the first time.
+    </div>
+
+    <div class="controls">
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="Search recipes or ingredients...">
         </div>
-
-        <div class="disclaimer">
-            <strong>Important:</strong> Not all recipes work consistently. You might use the right ingredients and still receive a different food item due to in-game randomness. Trial and error is key!
+        
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="normal">Normal</button>
+            <button class="filter-btn" data-filter="uncommon">Uncommon</button>
+            <button class="filter-btn" data-filter="rare">Rare</button>
+            <button class="filter-btn" data-filter="legendary">Legendary</button>
+            <button class="filter-btn" data-filter="mythical">Mythical</button>
+            <button class="filter-btn" data-filter="divine">Divine</button>
+            <button class="filter-btn" data-filter="prismatic">Prismatic</button>
         </div>
+    </div>
 
-        <div class="intro-section">
-            <h2>🍳 How Food Crafting Works</h2>
-            <p>To make food, combine specific ingredients at the cooking station. Each dish has known combinations, but the output isn't always consistent due to backend randomization and overlapping recipes.</p>
-            <p><strong>The Pig Chef</strong> judges your food creations - the more interesting or complex the recipe, the better the reward!</p>
-        </div>
-
-        <div class="stats">
-            <div class="stat">
-                <span class="stat-number" id="total-recipes">10</span>
-                <div class="stat-label">Recipe Types</div>
-            </div>
-
-            <!-- Sushi -->
-            <div class="recipe-card uncommon" data-rarities="uncommon,rare,legendary,mythical,divine,prismatic">
-                <div class="recipe-header">
-                    <div class="recipe-title">Sushi</div>
-                    <div class="rarity-badge uncommon">Multiple</div>
-                </div>
-                <div class="recipe-variants">
-                    <div class="variant">
-                        <div class="variant-header">Uncommon:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">4× Bamboo</span>
-                            <span class="ingredient">1× Corn</span>
-                        </div>
-                    </div>
-                    <div class="variant">
-                        <div class="variant-header">Rare:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">3× Bamboo</span>
-                            <span class="ingredient">1× Corn</span>
-                            <span class="ingredient">1× Maple Apple</span>
-                        </div>
-                    </div>
-                    <div class="variant">
-                        <div class="variant-header">Legendary:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">3× Bamboo</span>
-                            <span class="ingredient">1× Hive Fruit</span>
-                            <span class="ingredient">1× Corn</span>
-                        </div>
-                    </div>
-                    <div class="variant">
-                        <div class="variant-header">Mythical:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">2× Bamboo</span>
-                            <span class="ingredient">1× Corn</span>
-                            <span class="ingredient">2× Bone Blossom</span>
-                        </div>
-                    </div>
-                    <div class="variant">
-                        <div class="variant-header">Divine:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Bamboo</span>
-                            <span class="ingredient">1× Corn</span>
-                            <span class="ingredient">3× Bone Blossom</span>
-                        </div>
-                    </div>
-                    <div class="variant">
-                        <div class="variant-header">Prismatic:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Bamboo</span>
-                            <span class="ingredient">4× Bone Blossom</span>
-                        </div>
-                    </div>
+    <div class="recipes" id="recipeGrid">
+        <!-- Salad -->
+        <div class="recipe" data-rarities="normal,mythical,divine,prismatic">
+            <div class="recipe-header">
+                <div class="recipe-title">Salad</div>
+                <div class="recipe-badges">
+                    <span class="badge normal">Normal</span>
+                    <span class="badge mythical">Mythical</span>
+                    <span class="badge divine">Divine</span>
+                    <span class="badge prismatic">Prismatic</span>
                 </div>
             </div>
-
-            <!-- Cake -->
-            <div class="recipe-card normal" data-rarities="normal,rare,legendary,mythical,divine,prismatic">
-                <div class="recipe-header">
-                    <div class="recipe-title">Cake</div>
-                    <div class="rarity-badge normal">Multiple</div>
-                </div>
-                <div class="recipe-variants">
-                    <div class="variant">
-                        <div class="variant-header">Normal Options:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">2× Corn</span>
-                            <span class="ingredient">2× Strawberry</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">2× Kiwi</span>
-                            <span class="ingredient">2× Banana or 2× Corn</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">2× Sugar Apple</span>
-                            <span class="ingredient">2× Corn</span>
-                        </div>
+            <div class="recipe-body">
+                <div class="variant">
+                    <div class="variant-title">Normal recipes</div>
+                    <div class="ingredients">
+                        <span class="ingredient">2× Tomato</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Rare Options:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">2× Blueberry</span>
-                            <span class="ingredient">1× Corn</span>
-                            <span class="ingredient">1× Tomato</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">1× Blueberry</span>
-                            <span class="ingredient">1× Grape</span>
-                            <span class="ingredient">1× Apple</span>
-                            <span class="ingredient">1× Corn</span>
-                        </div>
+                    <div class="ingredients" style="margin-top: 6px;">
+                        <span class="ingredient">1× Strawberry</span>
+                        <span class="ingredient">1× Bell Pepper</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Legendary Options:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">2× Corn</span>
-                            <span class="ingredient">2× Watermelon</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">2× Corn</span>
-                            <span class="ingredient">2× Banana</span>
-                            <span class="ingredient">1× Watermelon</span>
-                        </div>
-                    </div>
-                    <div class="variant">
-                        <div class="variant-header">Mythical:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Ember Lily</span>
-                            <span class="ingredient">2× Peach</span>
-                        </div>
-                    </div>
-                    <div class="variant">
-                        <div class="variant-header">Divine Options:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">2× Banana</span>
-                            <span class="ingredient">2× Strawberry</span>
-                            <span class="ingredient">1× Pumpkin</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">1× Banana or 1× Corn</span>
-                            <span class="ingredient">1× Kiwi</span>
-                            <span class="ingredient">3× Bone Blossom</span>
-                        </div>
-                    </div>
-                    <div class="variant">
-                        <div class="variant-header">Prismatic Options:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">4× Sweet-type Crops</span>
-                            <span class="ingredient">4× Corn</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">1× Sakura Bush</span>
-                            <span class="ingredient">1× Cacao</span>
-                            <span class="ingredient">1× Corn</span>
-                            <span class="ingredient">1× Giant Pinecone</span>
-                            <span class="ingredient">1× Spiked Mango</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">1× Banana</span>
-                            <span class="ingredient">4× Sugar Apple</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">1× Corn</span>
-                            <span class="ingredient">2× Elder Strawberry</span>
-                            <span class="ingredient">2× Sugar Apple</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">1× Banana</span>
-                            <span class="ingredient">4× Bone Blossom</span>
-                        </div>
+                    <div class="ingredients" style="margin-top: 6px;">
+                        <span class="ingredient">2× Blood Banana</span>
+                        <span class="ingredient">2× Tomato</span>
                     </div>
                 </div>
-            </div>
-
-            <!-- Burger -->
-            <div class="recipe-card normal" data-rarities="normal,divine,mythical,prismatic">
-                <div class="recipe-header">
-                    <div class="recipe-title">Burger</div>
-                    <div class="rarity-badge normal">Multiple</div>
-                </div>
-                <div class="recipe-variants">
-                    <div class="variant">
-                        <div class="variant-header">Normal:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Pepper</span>
-                            <span class="ingredient">1× Corn</span>
-                            <span class="ingredient">1× Tomato</span>
-                        </div>
-                    </div>
-                    <div class="variant">
-                        <div class="variant-header">Divine:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Pepper</span>
-                            <span class="ingredient">1× Corn</span>
-                            <span class="ingredient">1× Tomato</span>
-                            <span class="ingredient">1× Bone Blossom</span>
-                            <span class="ingredient">1× Beanstalk</span>
-                        </div>
-                    </div>
-                    <div class="variant">
-                        <div class="variant-header">Mythical:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Pepper</span>
-                            <span class="ingredient">1× Corn</span>
-                            <span class="ingredient">1× Tomato</span>
-                            <span class="ingredient">2× Beanstalk</span>
-                        </div>
-                    </div>
-                    <div class="variant">
-                        <div class="variant-header">Prismatic:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Corn</span>
-                            <span class="ingredient">1× Tomato</span>
-                            <span class="ingredient">3× Bone Blossom</span>
-                        </div>
+                <div class="variant">
+                    <div class="variant-title">Mythical</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Tomato</span>
+                        <span class="ingredient">1× Giant Pinecone</span>
                     </div>
                 </div>
-            </div>
-            <div class="stat">
-                <span class="stat-number" id="total-variants">45</span>
-                <div class="stat-label">Total Variants</div>
-            </div>
-            <div class="stat">
-                <span class="stat-number" id="visible-recipes">10</span>
-                <div class="stat-label">Showing</div>
+                <div class="variant">
+                    <div class="variant-title">Divine</div>
+                    <div class="ingredients">
+                        <span class="ingredient">3× Sugar Apple</span>
+                        <span class="ingredient">1× Pepper</span>
+                        <span class="ingredient">1× Pineapple</span>
+                    </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Prismatic</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Tomato</span>
+                        <span class="ingredient">4× Bone Blossom</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="search-box">
-            <input type="text" id="search" placeholder="Search recipes or ingredients..." onkeyup="filterRecipes()">
+        <!-- Sandwich -->
+        <div class="recipe" data-rarities="normal">
+            <div class="recipe-header">
+                <div class="recipe-title">Sandwich</div>
+                <div class="recipe-badges">
+                    <span class="badge normal">Normal</span>
+                </div>
+            </div>
+            <div class="recipe-body">
+                <div class="variant">
+                    <div class="variant-title">Recipe</div>
+                    <div class="ingredients">
+                        <span class="ingredient">2× Tomato</span>
+                        <span class="ingredient">1× Corn</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="filter-buttons">
-            <button class="filter-btn active" onclick="filterByRarity('all')">All Recipes</button>
-            <button class="filter-btn" onclick="filterByRarity('normal')">Normal</button>
-            <button class="filter-btn" onclick="filterByRarity('uncommon')">Uncommon</button>
-            <button class="filter-btn" onclick="filterByRarity('rare')">Rare</button>
-            <button class="filter-btn" onclick="filterByRarity('legendary')">Legendary</button>
-            <button class="filter-btn" onclick="filterByRarity('mythical')">Mythical</button>
-            <button class="filter-btn" onclick="filterByRarity('divine')">Divine</button>
-            <button class="filter-btn" onclick="filterByRarity('prismatic')">Prismatic</button>
+        <!-- Pie -->
+        <div class="recipe" data-rarities="normal,mythical,divine,legendary,prismatic">
+            <div class="recipe-header">
+                <div class="recipe-title">Pie</div>
+                <div class="recipe-badges">
+                    <span class="badge normal">Normal</span>
+                    <span class="badge mythical">Mythical</span>
+                    <span class="badge divine">Divine</span>
+                    <span class="badge legendary">Legendary</span>
+                    <span class="badge prismatic">Prismatic</span>
+                </div>
+            </div>
+            <div class="recipe-body">
+                <div class="variant">
+                    <div class="variant-title">Normal recipes</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Sugar Apple</span>
+                        <span class="ingredient">1× Pumpkin</span>
+                    </div>
+                    <div class="ingredients" style="margin-top: 6px;">
+                        <span class="ingredient">1× Apple</span>
+                        <span class="ingredient">1× Pumpkin</span>
+                    </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Mythical</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Giant Pinecone</span>
+                        <span class="ingredient">1× Apple</span>
+                        <span class="ingredient">1× Corn</span>
+                        <span class="ingredient">1× Pumpkin</span>
+                    </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Divine</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Pumpkin</span>
+                        <span class="ingredient">1× Moon Melon</span>
+                    </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Legendary</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Pumpkin</span>
+                        <span class="ingredient">1× Giant Pinecone</span>
+                        <span class="ingredient">1× Corn</span>
+                        <span class="ingredient">1× Apple</span>
+                    </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Prismatic</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Elder Strawberry</span>
+                        <span class="ingredient">1× Mango</span>
+                        <span class="ingredient">1× Giant Pinecone</span>
+                        <span class="ingredient">1× Coconut</span>
+                        <span class="ingredient">1× Beanstalk</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="recipes-grid" id="recipes-container">
-            <!-- Salad -->
-            <div class="recipe-card normal" data-rarities="normal,mythical,divine,prismatic">
-                <div class="recipe-header">
-                    <div class="recipe-title">Salad</div>
-                    <div class="rarity-badge normal">Multiple</div>
+        <!-- Waffle -->
+        <div class="recipe" data-rarities="normal,prismatic">
+            <div class="recipe-header">
+                <div class="recipe-title">Waffle</div>
+                <div class="recipe-badges">
+                    <span class="badge normal">Normal</span>
+                    <span class="badge prismatic">Prismatic</span>
                 </div>
-                <div class="recipe-variants">
-                    <div class="variant">
-                        <div class="variant-header">Normal Options:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">2× Tomato</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">1× Strawberry</span>
-                            <span class="ingredient">1× Bell Pepper</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">2× Blood Banana</span>
-                            <span class="ingredient">2× Tomato</span>
-                        </div>
+            </div>
+            <div class="recipe-body">
+                <div class="variant">
+                    <div class="variant-title">Normal recipes</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Pumpkin</span>
+                        <span class="ingredient">1× Watermelon</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Mythical:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Tomato</span>
-                            <span class="ingredient">1× Giant Pinecone</span>
-                        </div>
+                    <div class="ingredients" style="margin-top: 6px;">
+                        <span class="ingredient">1× Sugar Apple</span>
+                        <span class="ingredient">1× Watermelon</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Divine:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">3× Sugar Apple</span>
-                            <span class="ingredient">1× Pepper</span>
-                            <span class="ingredient">1× Pineapple</span>
-                        </div>
+                    <div class="ingredients" style="margin-top: 6px;">
+                        <span class="ingredient">1× Strawberry</span>
+                        <span class="ingredient">1× Coconut</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Prismatic:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Tomato</span>
-                            <span class="ingredient">4× Bone Blossom</span>
-                        </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Prismatic</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Sugar Apple</span>
+                        <span class="ingredient">1× Coconut</span>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Sandwich -->
-            <div class="recipe-card normal" data-rarities="normal">
-                <div class="recipe-header">
-                    <div class="recipe-title">Sandwich</div>
-                    <div class="rarity-badge normal">Normal</div>
+        <!-- Hot Dog -->
+        <div class="recipe" data-rarities="normal,uncommon,legendary,mythical,divine,prismatic">
+            <div class="recipe-header">
+                <div class="recipe-title">Hot Dog</div>
+                <div class="recipe-badges">
+                    <span class="badge normal">Normal</span>
+                    <span class="badge uncommon">Uncommon</span>
+                    <span class="badge legendary">Legendary</span>
+                    <span class="badge mythical">Mythical</span>
+                    <span class="badge divine">Divine</span>
+                    <span class="badge prismatic">Prismatic</span>
                 </div>
-                <div class="recipe-variants">
-                    <div class="variant">
-                        <div class="variant-header">Recipe:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">2× Tomato</span>
-                            <span class="ingredient">1× Corn</span>
-                        </div>
+            </div>
+            <div class="recipe-body">
+                <div class="variant">
+                    <div class="variant-title">Normal recipes</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Pepper</span>
+                        <span class="ingredient">1× Corn or Banana</span>
+                    </div>
+                    <div class="ingredients" style="margin-top: 6px;">
+                        <span class="ingredient">2× Corn</span>
+                        <span class="ingredient">1× Watermelon</span>
+                    </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Uncommon</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Corn</span>
+                        <span class="ingredient">4× Bone Blossom</span>
+                    </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Legendary</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Pink Lily</span>
+                        <span class="ingredient">1× Elephant Ears</span>
+                        <span class="ingredient">1× Bone Blossom</span>
+                        <span class="ingredient">1× Violet Corn</span>
+                    </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Mythical</div>
+                    <div class="ingredients">
+                        <span class="ingredient">2× Bone Blossom</span>
+                        <span class="ingredient">1× Pepper</span>
+                        <span class="ingredient">1× Corn</span>
+                    </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Divine</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1-2× Bone Blossom</span>
+                        <span class="ingredient">1× Violet Corn</span>
+                    </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Prismatic</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Corn</span>
+                        <span class="ingredient">4× Bone Blossom</span>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Pie -->
-            <div class="recipe-card normal" data-rarities="normal,mythical,divine,legendary,prismatic">
-                <div class="recipe-header">
-                    <div class="recipe-title">Pie</div>
-                    <div class="rarity-badge normal">Multiple</div>
+        <!-- Ice Cream -->
+        <div class="recipe" data-rarities="normal,rare,mythical,divine,prismatic">
+            <div class="recipe-header">
+                <div class="recipe-title">Ice Cream</div>
+                <div class="recipe-badges">
+                    <span class="badge normal">Normal</span>
+                    <span class="badge rare">Rare</span>
+                    <span class="badge mythical">Mythical</span>
+                    <span class="badge divine">Divine</span>
+                    <span class="badge prismatic">Prismatic</span>
                 </div>
-                <div class="recipe-variants">
-                    <div class="variant">
-                        <div class="variant-header">Normal Options:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Sugar Apple</span>
-                            <span class="ingredient">1× Pumpkin</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">1× Apple</span>
-                            <span class="ingredient">1× Pumpkin</span>
-                        </div>
+            </div>
+            <div class="recipe-body">
+                <div class="variant">
+                    <div class="variant-title">Normal recipes</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Blueberry</span>
+                        <span class="ingredient">1× Corn</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Mythical:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Giant Pinecone</span>
-                            <span class="ingredient">1× Apple</span>
-                            <span class="ingredient">1× Corn</span>
-                            <span class="ingredient">1× Pumpkin</span>
-                        </div>
+                    <div class="ingredients" style="margin-top: 6px;">
+                        <span class="ingredient">1× Sugar Apple</span>
+                        <span class="ingredient">1× Corn</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Divine:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Pumpkin</span>
-                            <span class="ingredient">1× Moon Melon</span>
-                        </div>
+                    <div class="ingredients" style="margin-top: 6px;">
+                        <span class="ingredient">2× Banana</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Legendary:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Pumpkin</span>
-                            <span class="ingredient">1× Giant Pinecone</span>
-                            <span class="ingredient">1× Corn</span>
-                            <span class="ingredient">1× Apple</span>
-                        </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Rare</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Sugarglaze</span>
+                        <span class="ingredient">1× Sugar Apple</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Prismatic:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Elder Strawberry</span>
-                            <span class="ingredient">1× Mango</span>
-                            <span class="ingredient">1× Giant Pinecone</span>
-                            <span class="ingredient">1× Coconut</span>
-                            <span class="ingredient">1× Beanstalk</span>
-                        </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Mythical</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Sugar Apple</span>
+                        <span class="ingredient">1× Banana</span>
+                    </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Divine</div>
+                    <div class="ingredients">
+                        <span class="ingredient">3× Sugar Apple</span>
+                        <span class="ingredient">1× Corn</span>
+                    </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Prismatic recipes</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Sugarglaze</span>
+                        <span class="ingredient">1× Sugar Apple</span>
+                        <span class="ingredient">3× Bone Blossom</span>
+                    </div>
+                    <div class="ingredients" style="margin-top: 6px;">
+                        <span class="ingredient">1× Banana</span>
+                        <span class="ingredient">1× Sugar Apple</span>
+                        <span class="ingredient">3× Bone Blossom</span>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Waffle -->
-            <div class="recipe-card normal" data-rarities="normal,prismatic">
-                <div class="recipe-header">
-                    <div class="recipe-title">Waffle</div>
-                    <div class="rarity-badge normal">Multiple</div>
+        <!-- Donut -->
+        <div class="recipe" data-rarities="normal,mythical,divine,legendary,prismatic">
+            <div class="recipe-header">
+                <div class="recipe-title">Donut</div>
+                <div class="recipe-badges">
+                    <span class="badge normal">Normal</span>
+                    <span class="badge mythical">Mythical</span>
+                    <span class="badge divine">Divine</span>
+                    <span class="badge legendary">Legendary</span>
+                    <span class="badge prismatic">Prismatic</span>
                 </div>
-                <div class="recipe-variants">
-                    <div class="variant">
-                        <div class="variant-header">Normal Options:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Pumpkin</span>
-                            <span class="ingredient">1× Watermelon</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">1× Sugar Apple</span>
-                            <span class="ingredient">1× Watermelon</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">1× Strawberry</span>
-                            <span class="ingredient">1× Coconut</span>
-                        </div>
+            </div>
+            <div class="recipe-body">
+                <div class="variant">
+                    <div class="variant-title">Normal recipes</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Strawberry</span>
+                        <span class="ingredient">1× Tomato</span>
+                        <span class="ingredient">1× Apple</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Prismatic:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Sugar Apple</span>
-                            <span class="ingredient">1× Coconut</span>
-                        </div>
+                    <div class="ingredients" style="margin-top: 6px;">
+                        <span class="ingredient">2× Corn</span>
+                        <span class="ingredient">1× Watermelon</span>
+                    </div>
+                    <div class="ingredients" style="margin-top: 6px;">
+                        <span class="ingredient">2× Corn</span>
+                        <span class="ingredient">1× Banana</span>
+                        <span class="ingredient">1× Pumpkin</span>
+                    </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Mythical</div>
+                    <div class="ingredients">
+                        <span class="ingredient">2× Corn</span>
+                        <span class="ingredient">1× Blueberry</span>
+                        <span class="ingredient">1× Apple</span>
+                    </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Divine</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Bone Blossom</span>
+                        <span class="ingredient">1× Sugar Apple</span>
+                        <span class="ingredient">1× Banana</span>
+                    </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Legendary</div>
+                    <div class="ingredients">
+                        <span class="ingredient">2× Sugar Apple</span>
+                        <span class="ingredient">1× Corn</span>
+                    </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Prismatic</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Watermelon</span>
+                        <span class="ingredient">2× Corn</span>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Hot Dog -->
-            <div class="recipe-card normal" data-rarities="normal,uncommon,legendary,mythical,divine,prismatic">
-                <div class="recipe-header">
-                    <div class="recipe-title">Hot Dog</div>
-                    <div class="rarity-badge normal">Multiple</div>
+        <!-- Pizza -->
+        <div class="recipe" data-rarities="normal,mythical,legendary,divine,prismatic">
+            <div class="recipe-header">
+                <div class="recipe-title">Pizza</div>
+                <div class="recipe-badges">
+                    <span class="badge normal">Normal</span>
+                    <span class="badge mythical">Mythical</span>
+                    <span class="badge legendary">Legendary</span>
+                    <span class="badge divine">Divine</span>
+                    <span class="badge prismatic">Prismatic</span>
                 </div>
-                <div class="recipe-variants">
-                    <div class="variant">
-                        <div class="variant-header">Normal Options:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Pepper</span>
-                            <span class="ingredient">1× Corn or 1× Banana</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">2× Corn</span>
-                            <span class="ingredient">1× Watermelon</span>
-                        </div>
+            </div>
+            <div class="recipe-body">
+                <div class="variant">
+                    <div class="variant-title">Normal recipes</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Banana</span>
+                        <span class="ingredient">1× Tomato</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Uncommon:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Corn</span>
-                            <span class="ingredient">4× Bone Blossom</span>
-                        </div>
+                    <div class="ingredients" style="margin-top: 6px;">
+                        <span class="ingredient">1× Tomato</span>
+                        <span class="ingredient">1× Banana</span>
+                        <span class="ingredient">2× Corn</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Legendary:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Pink Lily</span>
-                            <span class="ingredient">1× Elephant Ears</span>
-                            <span class="ingredient">1× Bone Blossom</span>
-                            <span class="ingredient">1× Violet Corn</span>
-                        </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Mythical</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Ember Lily</span>
+                        <span class="ingredient">1× Corn</span>
+                        <span class="ingredient">1× Tomato</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Mythical:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">2× Bone Blossom</span>
-                            <span class="ingredient">1× Pepper</span>
-                            <span class="ingredient">1× Corn</span>
-                        </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Legendary</div>
+                    <div class="ingredients">
+                        <span class="ingredient">2× Corn</span>
+                        <span class="ingredient">2× Apple</span>
+                        <span class="ingredient">1× Pepper</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Divine:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1-2× Bone Blossom</span>
-                            <span class="ingredient">1× Violet Corn</span>
-                        </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Divine</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Strawberry</span>
+                        <span class="ingredient">1× Pepper</span>
+                        <span class="ingredient">1× Corn</span>
+                        <span class="ingredient">1× Tomato</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Prismatic:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Corn</span>
-                            <span class="ingredient">4× Bone Blossom</span>
-                        </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Prismatic</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Giant Pinecone</span>
+                        <span class="ingredient">1× Corn</span>
+                        <span class="ingredient">1× Apple</span>
+                        <span class="ingredient">1× Pepper</span>
+                        <span class="ingredient">1× Strawberry</span>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Ice Cream -->
-            <div class="recipe-card normal" data-rarities="normal,rare,mythical,divine,prismatic">
-                <div class="recipe-header">
-                    <div class="recipe-title">Ice Cream</div>
-                    <div class="rarity-badge normal">Multiple</div>
+        <!-- Sushi -->
+        <div class="recipe" data-rarities="uncommon,rare,legendary,mythical,divine,prismatic">
+            <div class="recipe-header">
+                <div class="recipe-title">Sushi</div>
+                <div class="recipe-badges">
+                    <span class="badge uncommon">Uncommon</span>
+                    <span class="badge rare">Rare</span>
+                    <span class="badge legendary">Legendary</span>
+                    <span class="badge mythical">Mythical</span>
+                    <span class="badge divine">Divine</span>
+                    <span class="badge prismatic">Prismatic</span>
                 </div>
-                <div class="recipe-variants">
-                    <div class="variant">
-                        <div class="variant-header">Normal Options:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Blueberry</span>
-                            <span class="ingredient">1× Corn</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">1× Sugar Apple</span>
-                            <span class="ingredient">1× Corn</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">2× Banana</span>
-                        </div>
+            </div>
+            <div class="recipe-body">
+                <div class="variant">
+                    <div class="variant-title">Uncommon</div>
+                    <div class="ingredients">
+                        <span class="ingredient">4× Bamboo</span>
+                        <span class="ingredient">1× Corn</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Rare:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Sugarglaze</span>
-                            <span class="ingredient">1× Sugar Apple</span>
-                        </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Rare</div>
+                    <div class="ingredients">
+                        <span class="ingredient">3× Bamboo</span>
+                        <span class="ingredient">1× Corn</span>
+                        <span class="ingredient">1× Maple Apple</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Mythical:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Sugar Apple</span>
-                            <span class="ingredient">1× Banana</span>
-                        </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Legendary</div>
+                    <div class="ingredients">
+                        <span class="ingredient">3× Bamboo</span>
+                        <span class="ingredient">1× Hive Fruit</span>
+                        <span class="ingredient">1× Corn</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Divine:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">3× Sugar Apple</span>
-                            <span class="ingredient">1× Corn</span>
-                        </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Mythical</div>
+                    <div class="ingredients">
+                        <span class="ingredient">2× Bamboo</span>
+                        <span class="ingredient">1× Corn</span>
+                        <span class="ingredient">2× Bone Blossom</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Prismatic Options:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Sugarglaze</span>
-                            <span class="ingredient">1× Sugar Apple</span>
-                            <span class="ingredient">3× Bone Blossom</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">1× Banana</span>
-                            <span class="ingredient">1× Sugar Apple</span>
-                            <span class="ingredient">3× Bone Blossom</span>
-                        </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Divine</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Bamboo</span>
+                        <span class="ingredient">1× Corn</span>
+                        <span class="ingredient">3× Bone Blossom</span>
+                    </div>
+                </div>
+                <div class="variant">
+                    <div class="variant-title">Prismatic</div>
+                    <div class="ingredients">
+                        <span class="ingredient">1× Bamboo</span>
+                        <span class="ingredient">4× Bone Blossom</span>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Donut -->
-            <div class="recipe-card normal" data-rarities="normal,mythical,divine,legendary,prismatic">
-                <div class="recipe-header">
-                    <div class="recipe-title">Donut</div>
-                    <div class="rarity-badge normal">Multiple</div>
-                </div>
-                <div class="recipe-variants">
-                    <div class="variant">
-                        <div class="variant-header">Normal Options:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Strawberry</span>
-                            <span class="ingredient">1× Tomato</span>
-                            <span class="ingredient">1× Apple</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">2× Corn</span>
-                            <span class="ingredient">1× Watermelon</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">2× Corn</span>
-                            <span class="ingredient">1× Banana</span>
-                            <span class="ingredient">1× Pumpkin</span>
-                        </div>
-                    </div>
-                    <div class="variant">
-                        <div class="variant-header">Mythical:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">2× Corn</span>
-                            <span class="ingredient">1× Blueberry</span>
-                            <span class="ingredient">1× Apple</span>
-                        </div>
-                    </div>
-                    <div class="variant">
-                        <div class="variant-header">Divine:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Bone Blossom</span>
-                            <span class="ingredient">1× Sugar Apple</span>
-                            <span class="ingredient">1× Banana</span>
-                        </div>
-                    </div>
-                    <div class="variant">
-                        <div class="variant-header">Legendary:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">2× Sugar Apple</span>
-                            <span class="ingredient">1× Corn</span>
-                        </div>
-                    </div>
-                    <div class="variant">
-                        <div class="variant-header">Prismatic:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Watermelon</span>
-                            <span class="ingredient">2× Corn</span>
-                        </div>
-                    </div>
+        <!-- Cake -->
+        <div class="recipe" data-rarities="normal,rare,legendary,mythical,divine,prismatic">
+            <div class="recipe-header">
+                <div class="recipe-title">Cake</div>
+                <div class="recipe-badges">
+                    <span class="badge normal">Normal</span>
+                    <span class="badge rare">Rare</span>
+                    <span class="badge legendary">Legendary</span>
+                    <span class="badge mythical">Mythical</span>
+                    <span class="badge divine">Divine</span>
+                    <span class="badge prismatic">Prismatic</span>
                 </div>
             </div>
-
-            <!-- Pizza -->
-            <div class="recipe-card normal" data-rarities="normal,mythical,legendary,divine,prismatic">
-                <div class="recipe-header">
-                    <div class="recipe-title">Pizza</div>
-                    <div class="rarity-badge normal">Multiple</div>
-                </div>
-                <div class="recipe-variants">
-                    <div class="variant">
-                        <div class="variant-header">Normal Options:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Banana</span>
-                            <span class="ingredient">1× Tomato</span>
-                        </div>
-                        <div class="ingredient-list" style="margin-top: 5px;">
-                            <span class="ingredient">1× Tomato</span>
-                            <span class="ingredient">1× Banana</span>
-                            <span class="ingredient">2× Corn</span>
-                        </div>
+            <div class="recipe-body">
+                <div class="variant">
+                    <div class="variant-title">Normal recipes</div>
+                    <div class="ingredients">
+                        <span class="ingredient">2× Corn</span>
+                        <span class="ingredient">2× Strawberry</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Mythical:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Ember Lily</span>
-                            <span class="ingredient">1× Corn</span>
-                            <span class="ingredient">1× Tomato</span>
-                        </div>
+                    <div class="ingredients" style="margin-top: 6px;">
+                        <span class="ingredient">2× Kiwi</span>
+                        <span class="ingredient">2× Banana or 2× Corn</span>
                     </div>
-                    <div class="variant">
-                        <div class="variant-header">Legendary:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">2× Corn</span>
-                            <span class="ingredient">2× Apple</span>
-                            <span class="ingredient">1× Pepper</span>
-                        </div>
-                    </div>
-                    <div class="variant">
-                        <div class="variant-header">Divine:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Strawberry</span>
-                            <span class="ingredient">1× Pepper</span>
-                            <span class="ingredient">1× Corn</span>
-                            <span class="ingredient">1× Tomato</span>
-                        </div>
-                    </div>
-                    <div class="variant">
-                        <div class="variant-header">Prismatic:</div>
-                        <div class="ingredient-list">
-                            <span class="ingredient">1× Giant Pinecone</span>
-                            <span class="ingredient">1× Corn</span>
-                            <span class="ingredient">1× Apple</span>
-                            <span class="ingredient">1× Pepper</span>
-                            <span class="ingredient">1× Strawberry</span>
-                        </div>
-                    </div>
+                    <div class="ingredients"
